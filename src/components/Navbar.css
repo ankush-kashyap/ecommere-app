@@ -1,0 +1,31 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 30px;
+    background: #131921;
+    color: white;
+}
+.navbar-logo img {
+  width: 100px;
+  margin-top: 10px;
+}
+
+.navbar-search {
+  flex: 1;
+  margin: 0 20px;
+}
+.navbar-right {
+  display: flex;
+  gap: 20px;
+}
+.navbar-cart {
+    margin-left: 24px;
+}
+.navbar-user,
+.navbar-cart {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
