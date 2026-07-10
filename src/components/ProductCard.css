@@ -1,5 +1,7 @@
 .product-card {
-    width: 250px;
+    position: relative;
+    width: 280px;
+    height: 430px;
     border: 0.2px solid black;
     padding: 20px;
     background-color: white;
@@ -14,7 +16,7 @@
 }
 
 .product-image {
-    height: 150px;
+    height: 220px;
     object-fit: contain;
     width: 100%;
 }
@@ -35,7 +37,12 @@
 }
 
 .product-info h3 {
-    font-size: 15px;
+    height: 75px;
+
+    font-size: 18px;
+    font-weight: 600;
+
+    overflow: hidden;
     margin: 10px 0;
 }
 
@@ -58,7 +65,7 @@
     margin-right: -64px;
 }
 
-.product-info button {
+.addtocart {
     height: 30px;
     width: 100%;
     border-radius: 7px;
@@ -68,4 +75,43 @@
 
 .product-info button:hover {
     border: 1.5px solid black;
+}
+
+.wishlist-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+
+    width: 38px;
+    height: 38px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #fff;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+
+    transition: all 0.25s ease;
+    /* z-index: 10; */
+}
+
+.wishlist-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+}
+
+.heart {
+    font-size: 18px;
+    color: #555;
+    transition: color 0.25s ease;
+}
+
+.heart.filled {
+    color: #e53935;
 }

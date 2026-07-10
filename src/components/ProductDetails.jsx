@@ -17,7 +17,7 @@ function ProductDetails({ products }) {
       <img src={product.image} alt={product.title} />
       <h1>{product.title}</h1>
       <p>${product.price}</p>
-      <p>⭐ {product.rating}</p>
+      <p>⭐ {rating.rate}</p>
       <p>Category: {product.category}</p>
     </div>
   );

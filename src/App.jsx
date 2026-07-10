@@ -8,45 +8,22 @@ import ProductCard from "./components/ProductCard";
 import Footer from "./components/footer";
 import CartSidebar from "./components/CartSidebar";
 import Checkout from "./components/Checkout";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./firebase";
-import { useEffect, useState } from "react";
+import PrivateRoute from "./components/PrivateRoute";
+import Wishlist from "./components/Wishlist";
+import wirelessHeadphones from "./assets/wireless-headphones.jpg";
+import runningShoe from "./assets/running-shoe.jpg";
+import shirt from "./assets/shirt.jpg";
+import tShirt from "./assets/t-shirt.jpg";
 
 function App() {
-  const products = [
-    {
-      id: 1,
-      title: "Wireless Headphones",
-      price: 99,
-      rating: 4.5,
-      category: "Electronics",
-      image: "image-url",
-    },
-    {
-      id: 2,
-      title: "Running Shoes",
-      price: 120,
-      rating: 4.2,
-      category: "Shoes",
-      image: "image-url",
-    },
-    {
-      id: 3,
-      title: "T-Shirt",
-      price: 30,
-      rating: 4.0,
-      category: "Fashion",
-      image: "image-url",
-    },
-    {
-      id: 4,
-      title: "Shirt",
-      price: 300,
-      rating: 4.0,
-      category: "Fashion",
-      image: "image-url",
-    },
-  ];
+
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    fetch("/products.json")
+      .then((res) => res.json())
+      .then((data) => setProducts(data));
+  }, []);
 
   const [cartItems, setCartItems] = useState(() => {
     const saveCart = localStorage.getItem("cartItems");
@@ -61,14 +38,6 @@ function App() {
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-    });
-
-    return unsubscribe;
-  }, []);
 
   const addToCart = (product) => {
     const existingItem = cartItems.find(
@@ -131,6 +100,32 @@ function App() {
     );
   };
 
+  const [wishlist, setWishlist] = useState(() => {
+    const savedWishlist = localStorage.getItem("wishlist");
+    return savedWishlist ? JSON.parse(savedWishlist) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem(
+      "wishlist",
+      JSON.stringify(wishlist)
+    );
+  }, [wishlist]);
+
+  const toggleWishlist = (product) => {
+    const exists = wishlist.find(
+      (item) => item.id === product.id
+    );
+
+    if (exists) {
+      setWishlist(
+        wishlist.filter((item) => item.id !== product.id)
+      );
+    } else {
+      setWishlist([...wishlist, product]);
+    }
+  };
+
   return (
     <Routes>
       <Route
@@ -138,14 +133,13 @@ function App() {
         element={
           <>
             <Navbar
+              user={user}
               cartItems={cartItems}
+              wishlist={wishlist}
               setShowCart={setShowCart}
               searchTerm={searchTerm}
               setSearchTerm={setSearchTerm}
             />
-
-            <Hero />
-
             <div className="filters">
               <button onClick={() => setSelectedCategory("All")}>
                 All
@@ -164,6 +158,10 @@ function App() {
               </button>
             </div>
 
+            <Hero />
+
+
+
             <div className="products">
               {filteredProducts.map((product) => (
                 <ProductCard
@@ -172,8 +170,12 @@ function App() {
                   image={product.image}
                   title={product.title}
                   price={product.price}
-                  rating={product.rating}
+                 rating={product.rating.rate}
                   addToCart={() => addToCart(product)}
+                  toggleWishlist={() => toggleWishlist(product)}
+                  isWishlisted={wishlist.some(
+                    (item) => item.id === product.id
+                  )}
                 />
               ))}
             </div>
@@ -195,12 +197,26 @@ function App() {
 
       <Route
         path="/checkout"
-        element={<Checkout cartItems={cartItems} />}
+        element={
+          <PrivateRoute user={user}>
+            <Checkout cartItems={cartItems} />
+          </PrivateRoute>
+        }
       />
 
       <Route
         path="/product/:id"
         element={<ProductDetails products={products} />}
+      />
+      <Route
+        path="/wishlist"
+        element={
+          <Wishlist
+            wishlist={wishlist}
+            addToCart={addToCart}
+            toggleWishlist={toggleWishlist}
+          />
+        }
       />
     </Routes>
   );

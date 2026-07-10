@@ -20,24 +20,49 @@ function CartSidebar({ cartItems, setShowCart, increaseQuantity,
 
             {cartItems.map((item) => (
                 <div key={item.id} className="cart-item">
-                    <h4>{item.title}</h4>
-                    <p>Price: ${item.price}</p>
-                    <div>
-                        <button onClick={() => decreaseQuantity(item.id)}>
-                            -
-                        </button>
 
-                        <span>{item.quantity}</span>
+    <img
+        src={item.image}
+        alt={item.title}
+        className="cart-item-image"
+    />
 
-                        <button onClick={() => increaseQuantity(item.id)}>
-                            +
-                        </button>
-                    </div>
+    <div className="cart-item-details">
 
-                    <button onClick={() => removeItem(item.id)}>
-                        Remove
-                    </button>
-                </div>
+        <h4>{item.title}</h4>
+
+        <p className="cart-price">
+            ${item.price}
+        </p>
+
+        <div className="quantity-box">
+
+            <button
+                onClick={() => decreaseQuantity(item.id)}
+            >
+                −
+            </button>
+
+            <span>{item.quantity}</span>
+
+            <button
+                onClick={() => increaseQuantity(item.id)}
+            >
+                +
+            </button>
+
+        </div>
+
+        <button
+            className="remove-btn"
+            onClick={() => removeItem(item.id)}
+        >
+            Delete
+        </button>
+
+    </div>
+
+</div>
             ))
             }
 

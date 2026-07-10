@@ -1,11 +1,16 @@
 .navbar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 15px 30px;
-    background: #131921;
-    color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 30px;
+  background: #131921;
+  color: white;
 }
+
+.navbar-logo img:hover {
+  border: 2px solid white;
+}
+
 .navbar-logo img {
   width: 100px;
   margin-top: 10px;
@@ -15,17 +20,77 @@
   flex: 1;
   margin: 0 20px;
 }
+
 .navbar-right {
   display: flex;
   gap: 20px;
 }
-.navbar-cart {
-    margin-left: 24px;
+
+.navbar-cart:hover {
+  border: 2px solid white;
 }
+
+.navbar-cart {
+  margin-left: 24px;
+}
+
 .navbar-user,
 .navbar-cart {
   display: flex;
   align-items: center;
   gap: 5px;
   cursor: pointer;
+}
+.navbar-wishlist {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+
+  text-decoration: none;
+  color: #ffffff;
+
+  transition: transform 0.25s ease;
+}
+
+.navbar-wishlist:hover {
+  transform: scale(1.08);
+}
+
+.wishlist-heart {
+  font-size: 26px;
+  transition: color 0.3s ease;
+}
+
+.navbar-wishlist:hover .wishlist-heart {
+  
+  border: 2px solid white;
+}
+
+.wishlist-count {
+  position: absolute;
+  top: -4px;
+  right: -6px;
+
+  min-width: 18px;
+  height: 18px;
+
+  padding: 0 4px;
+
+  border-radius: 50%;
+
+  background: #f00404;
+  color: #111;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  border: 2px solid #131921;
 }

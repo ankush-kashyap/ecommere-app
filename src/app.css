@@ -1,20 +1,23 @@
 .filters {
     display: flex;
     gap: 15px;
-    padding: 20px;
-    background: #131921;
+    background: #25303f;
+    height: 50px;
 }
 
 .filters button {
-    padding: 10px 20px;
     cursor: pointer;
+    margin-left: 15px;
     border: none;
     background: transparent;
     color: white;
 }
+.filters button:hover{
+border: 2px solid white;
+}
 
 .products {
     display: grid;
-     grid-template-columns:  repeat(4, 1fr);
+     grid-template-columns:  repeat(5, 1fr);
      place-items: center;
 }
