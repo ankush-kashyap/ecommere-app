@@ -92,6 +92,4 @@ function ProductDetails({
     </div>
   );
 }
-
-
 export default ProductDetails;
