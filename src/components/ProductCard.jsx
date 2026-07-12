@@ -21,7 +21,7 @@ function ProductCard({ id,
                     <h3>{title}</h3>
                     <div className="product-PR">
                         <p className="product-price">${price}</p>
-                        <p className="product-rating">⭐ {rating}</p>
+                        <p className="product-rating">⭐ {rating.rate}</p>
                     </div>
                 </Link>
 
@@ -37,7 +37,7 @@ function ProductCard({ id,
                 </button>
 
 
-                {/* Add to Cart Button */}
+               
                 <button className="addtocart" onClick={addToCart}>
                     Add to Cart
                 </button>

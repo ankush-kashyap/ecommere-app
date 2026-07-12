@@ -11,63 +11,67 @@ function CartSidebar({ cartItems, setShowCart, increaseQuantity,
     );
     return (
         <aside className="cart-sidebar">
+
             <div className="cart-heading">
+
                 <h2>Your Cart</h2>
                 <button onClick={() => setShowCart(false)}>
                     Close
                 </button>
+
             </div>
 
-            {cartItems.map((item) => (
-                <div key={item.id} className="cart-item">
+            <div className="cart-items">
+                {cartItems.map((item) => (
+                    <div key={item.id} className="cart-item">
 
-    <img
-        src={item.image}
-        alt={item.title}
-        className="cart-item-image"
-    />
+                        <img
+                            src={item.image}
+                            alt={item.title}
+                            className="cart-item-image"
+                        />
 
-    <div className="cart-item-details">
+                        <div className="cart-item-details">
 
-        <h4>{item.title}</h4>
+                            <h4>{item.title}</h4>
 
-        <p className="cart-price">
-            ${item.price}
-        </p>
+                            <p className="cart-price">
+                                ${item.price}
+                            </p>
 
-        <div className="quantity-box">
+                            <div className="quantity-box">
 
-            <button
-                onClick={() => decreaseQuantity(item.id)}
-            >
-                −
-            </button>
+                                <button
+                                    onClick={() => decreaseQuantity(item.id)}
+                                >
+                                    −
+                                </button>
 
-            <span>{item.quantity}</span>
+                                <span>{item.quantity}</span>
 
-            <button
-                onClick={() => increaseQuantity(item.id)}
-            >
-                +
-            </button>
+                                <button
+                                    onClick={() => increaseQuantity(item.id)}
+                                >
+                                    +
+                                </button>
 
-        </div>
+                            </div>
 
-        <button
-            className="remove-btn"
-            onClick={() => removeItem(item.id)}
-        >
-            Delete
-        </button>
+                            <button
+                                className="remove-btn"
+                                onClick={() => removeItem(item.id)}
+                            >
+                                Delete
+                            </button>
 
-    </div>
+                        </div>
 
-</div>
-            ))
-            }
+                    </div>
+                ))}
+            </div>
 
             <div className="cart-total">
-                <h3>Total: ${totalPrice}</h3>
+                <h3>Total: ${totalPrice.toFixed(2)}</h3>
                 <Link to="/checkout">
                     <button>Go to Checkout</button>
                 </Link>

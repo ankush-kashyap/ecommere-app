@@ -7,7 +7,6 @@ function Wishlist({
 }) {
   return (
     <div className="wishlist-page">
-      <h2>My Wishlist</h2>
 
       {wishlist.length === 0 ? (
         <p>Your wishlist is empty.</p>

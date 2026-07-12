@@ -7,13 +7,14 @@ import Hero from "./components/hero";
 import ProductCard from "./components/ProductCard";
 import Footer from "./components/footer";
 import CartSidebar from "./components/CartSidebar";
-import Checkout from "./components/Checkout";
+import Checkout from "./components/checkout";
 import PrivateRoute from "./components/PrivateRoute";
 import Wishlist from "./components/Wishlist";
 import wirelessHeadphones from "./assets/wireless-headphones.jpg";
 import runningShoe from "./assets/running-shoe.jpg";
 import shirt from "./assets/shirt.jpg";
 import tShirt from "./assets/t-shirt.jpg";
+import products from "/public/products.json";
 
 function App() {
 
@@ -127,99 +128,92 @@ function App() {
   };
 
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <>
-            <Navbar
-              user={user}
-              cartItems={cartItems}
-              wishlist={wishlist}
-              setShowCart={setShowCart}
-              searchTerm={searchTerm}
-              setSearchTerm={setSearchTerm}
-            />
-            <div className="filters">
-              <button onClick={() => setSelectedCategory("All")}>
-                All
-              </button>
+<>
+  <Navbar
+    user={user}
+    cartItems={cartItems}
+    wishlist={wishlist}
+    setShowCart={setShowCart}
+    searchTerm={searchTerm}
+    setSearchTerm={setSearchTerm}
+  />
 
-              <button onClick={() => setSelectedCategory("Electronics")}>
-                Electronics
-              </button>
+  <Routes>
 
-              <button onClick={() => setSelectedCategory("Fashion")}>
-                Fashion
-              </button>
+    <Route
+      path="/"
+      element={
+        <>
+          <Hero />
 
-              <button onClick={() => setSelectedCategory("Shoes")}>
-                Shoes
-              </button>
-            </div>
-
-            <Hero />
-
-
-
-            <div className="products">
-              {filteredProducts.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  id={product.id}
-                  image={product.image}
-                  title={product.title}
-                  price={product.price}
-                 rating={product.rating.rate}
-                  addToCart={() => addToCart(product)}
-                  toggleWishlist={() => toggleWishlist(product)}
-                  isWishlisted={wishlist.some(
-                    (item) => item.id === product.id
-                  )}
-                />
-              ))}
-            </div>
-
-            {showCart && (
-              <CartSidebar
-                cartItems={cartItems}
-                setShowCart={setShowCart}
-                increaseQuantity={increaseQuantity}
-                decreaseQuantity={decreaseQuantity}
-                removeItem={removeItem}
+          <div className="products">
+            {filteredProducts.map((product) => (
+              <ProductCard
+                key={product.id}
+                id={product.id}
+                image={product.image}
+                title={product.title}
+                price={product.price}
+                rating={product.rating.rate}
+                addToCart={() => addToCart(product)}
+                toggleWishlist={() => toggleWishlist(product)}
+                isWishlisted={wishlist.some(
+                  (item) => item.id === product.id
+                )}
               />
-            )}
+            ))}
+          </div>
+        </>
+      }
+    />
 
-            <Footer />
-          </>
-        }
-      />
+    <Route
+      path="/product/:id"
+      element={
+        <ProductDetails
+          products={products}
+          addToCart={addToCart}
+          cartItems={cartItems}
+        />
+      }
+    />
 
-      <Route
-        path="/checkout"
-        element={
-          <PrivateRoute user={user}>
-            <Checkout cartItems={cartItems} />
-          </PrivateRoute>
-        }
-      />
+    <Route
+      path="/wishlist"
+      element={
+        <Wishlist
+          wishlist={wishlist}
+          addToCart={addToCart}
+          toggleWishlist={toggleWishlist}
+        />
+      }
+    />
 
-      <Route
-        path="/product/:id"
-        element={<ProductDetails products={products} />}
-      />
-      <Route
-        path="/wishlist"
-        element={
-          <Wishlist
-            wishlist={wishlist}
-            addToCart={addToCart}
-            toggleWishlist={toggleWishlist}
-          />
-        }
-      />
-    </Routes>
+    <Route
+      path="/checkout"
+      element={
+        <Checkout
+          cartItems={cartItems}
+        />
+      }
+    />
+
+  </Routes>
+
+  {showCart && (
+    <CartSidebar
+      cartItems={cartItems}
+      setShowCart={setShowCart}
+      increaseQuantity={increaseQuantity}
+      decreaseQuantity={decreaseQuantity}
+      removeItem={removeItem}
+    />
+  )}
+
+  <Footer />
+</>
   );
 }
 
 export default App;
+
