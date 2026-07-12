@@ -1,5 +1,5 @@
 import { Route, useParams } from "react-router-dom";
-import Navbar from "./Navbar";
+import Navbar from "./navbar";
 import "./ProductDetails.css";
 import { useNavigate } from "react-router-dom";
 
