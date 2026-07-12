@@ -9,7 +9,7 @@ import Footer from "./components/footer";
 import CartSidebar from "./components/CartSidebar";
 import Checkout from "./components/checkout";
 import PrivateRoute from "./components/PrivateRoute";
-import Wishlist from "./components/Wishlist";
+import Wishlist from "./components/wishlist";
 import wirelessHeadphones from "./assets/wireless-headphones.jpg";
 import runningShoe from "./assets/running-shoe.jpg";
 import shirt from "./assets/shirt.jpg";
