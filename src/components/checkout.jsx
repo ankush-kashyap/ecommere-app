@@ -59,7 +59,9 @@ function Checkout({ cartItems }) {
           ))
         )}
 
-
+        <div className="demo-notice">
+          ⚠️ Demo Project: Do not enter real personal or payment information.
+        </div>
         <div className="address-box">
 
           <h2>Delivery Address</h2>
