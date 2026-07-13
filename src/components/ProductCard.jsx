@@ -35,12 +35,7 @@ function ProductCard({ id,
                         <FaRegHeart />
                     )}
                 </button>
-
-
-               
-                <button className="addtocart" onClick={addToCart}>
-                    Add to Cart
-                </button>
+                <Link to={`/product/${id}`}>see more</Link>
             </div>
         </div>
     );

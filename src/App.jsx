@@ -197,6 +197,7 @@ function App() {
           element={
             <Checkout
               cartItems={cartItems}
+              removeItem={removeItem}
             />
           }
         />

@@ -2,7 +2,8 @@ import "./checkout.css";
 import { useState } from "react";
 
 
-function Checkout({ cartItems }) {
+function Checkout({ cartItems,
+  removeItem, }) {
 
   const [address, setAddress] = useState({
     name: "",
@@ -54,6 +55,12 @@ function Checkout({ cartItems }) {
                 </p>
 
               </div>
+              <button
+                className="remove-btn"
+                onClick={() => removeItem(item.id)}
+              >
+                Delete
+              </button>
 
             </div>
           ))
