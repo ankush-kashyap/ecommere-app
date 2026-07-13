@@ -15,6 +15,7 @@ import runningShoe from "./assets/running-shoe.jpg";
 import shirt from "./assets/shirt.jpg";
 import tShirt from "./assets/t-shirt.jpg";
 import products from "/public/products.json";
+import Contact from "./pages/Contact";
 
 function App() {
 
@@ -128,90 +129,94 @@ function App() {
   };
 
   return (
-<>
-  <Navbar
-    user={user}
-    cartItems={cartItems}
-    wishlist={wishlist}
-    setShowCart={setShowCart}
-    searchTerm={searchTerm}
-    setSearchTerm={setSearchTerm}
-  />
+    <>
+      <Navbar
+        user={user}
+        cartItems={cartItems}
+        wishlist={wishlist}
+        setShowCart={setShowCart}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+      />
 
-  <Routes>
+      <Routes>
 
-    <Route
-      path="/"
-      element={
-        <>
-          <Hero />
+        <Route
+          path="/"
+          element={
+            <>
+              <Hero />
 
-          <div className="products">
-            {filteredProducts.map((product) => (
-              <ProductCard
-                key={product.id}
-                id={product.id}
-                image={product.image}
-                title={product.title}
-                price={product.price}
-                rating={product.rating.rate}
-                addToCart={() => addToCart(product)}
-                toggleWishlist={() => toggleWishlist(product)}
-                isWishlisted={wishlist.some(
-                  (item) => item.id === product.id
-                )}
-              />
-            ))}
-          </div>
-        </>
-      }
-    />
+              <div className="products">
+                {filteredProducts.map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    id={product.id}
+                    image={product.image}
+                    title={product.title}
+                    price={product.price}
+                    rating={product.rating.rate}
+                    addToCart={() => addToCart(product)}
+                    toggleWishlist={() => toggleWishlist(product)}
+                    isWishlisted={wishlist.some(
+                      (item) => item.id === product.id
+                    )}
+                  />
+                ))}
+              </div>
+            </>
+          }
+        />
 
-    <Route
-      path="/product/:id"
-      element={
-        <ProductDetails
-          products={products}
-          addToCart={addToCart}
+        <Route
+          path="/product/:id"
+          element={
+            <ProductDetails
+              products={products}
+              addToCart={addToCart}
+              cartItems={cartItems}
+            />
+          }
+        />
+
+        <Route
+          path="/wishlist"
+          element={
+            <Wishlist
+              wishlist={wishlist}
+              addToCart={addToCart}
+              toggleWishlist={toggleWishlist}
+            />
+          }
+        />
+
+        <Route
+          path="/checkout"
+          element={
+            <Checkout
+              cartItems={cartItems}
+            />
+          }
+        />
+
+          
+      <Route path="/contact" element={<Contact />} />
+
+      </Routes>
+
+      {showCart && (
+        <CartSidebar
           cartItems={cartItems}
+          setShowCart={setShowCart}
+          increaseQuantity={increaseQuantity}
+          decreaseQuantity={decreaseQuantity}
+          removeItem={removeItem}
         />
-      }
-    />
+      )}
 
-    <Route
-      path="/wishlist"
-      element={
-        <Wishlist
-          wishlist={wishlist}
-          addToCart={addToCart}
-          toggleWishlist={toggleWishlist}
-        />
-      }
-    />
+      <Footer />
 
-    <Route
-      path="/checkout"
-      element={
-        <Checkout
-          cartItems={cartItems}
-        />
-      }
-    />
-
-  </Routes>
-
-  {showCart && (
-    <CartSidebar
-      cartItems={cartItems}
-      setShowCart={setShowCart}
-      increaseQuantity={increaseQuantity}
-      decreaseQuantity={decreaseQuantity}
-      removeItem={removeItem}
-    />
-  )}
-
-  <Footer />
-</>
+    </>
   );
 }
 
