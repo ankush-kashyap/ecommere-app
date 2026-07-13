@@ -5,6 +5,7 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="footer-links">
+        <Link to="/">Home</Link>
         <Link to="/about">About</Link>
         <Link to="/contact">Contact Us</Link>
         <Link to="/privacy">Privacy Policy</Link>
