@@ -16,6 +16,8 @@ import shirt from "./assets/shirt.jpg";
 import tShirt from "./assets/t-shirt.jpg";
 import products from "/public/products.json";
 import Contact from "./pages/Contact";
+import About from "./pages/About";
+import Privacy from "./pages/Privacy";
 
 function App() {
 
@@ -199,8 +201,10 @@ function App() {
           }
         />
 
-          
-      <Route path="/contact" element={<Contact />} />
+
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/about" element={<About />} />
+        <Route  path="/privacy"  element={<Privacy />} />
 
       </Routes>
 

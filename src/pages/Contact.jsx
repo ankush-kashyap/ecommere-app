@@ -17,7 +17,21 @@ function Contact() {
             <FaEnvelope className="contact-icon" />
             <div>
               <h3>Email</h3>
-              <p>yourname@email.com</p>
+              <p>ankushk51106@gmail.com</p>
+            </div>
+          </div>
+
+          <div className="contact-item">
+            <FaEnvelope className="contact-icon" />
+            <div>
+              <h3>Portfolio</h3>
+              <a
+                href="https://portfolioankush0.netlify.app/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                portfolioankush0
+              </a>
             </div>
           </div>
 
