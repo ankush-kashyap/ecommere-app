@@ -17,7 +17,7 @@ function Checkout({ cartItems,
 
 
   const [addressType, setAddressType] = useState("Home");
-
+  const [paymentMethod, setPaymentMethod] = useState("Cash on Delivery");
 
   const totalPrice = cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
@@ -165,6 +165,56 @@ function Checkout({ cartItems,
               Work
             </label>
           </div>
+
+<div className="payment-method">
+
+  <h2>Payment Method</h2>
+
+  <label>
+    <input
+      type="radio"
+      name="payment"
+      value="Cash on Delivery"
+      checked={paymentMethod === "Cash on Delivery"}
+      onChange={(e) => setPaymentMethod(e.target.value)}
+    />
+    Cash on Delivery
+  </label>
+
+  <label>
+    <input
+      type="radio"
+      name="payment"
+      value="UPI"
+      checked={paymentMethod === "UPI"}
+      onChange={(e) => setPaymentMethod(e.target.value)}
+    />
+    UPI
+  </label>
+
+  <label>
+    <input
+      type="radio"
+      name="payment"
+      value="Credit / Debit Card"
+      checked={paymentMethod === "Credit / Debit Card"}
+      onChange={(e) => setPaymentMethod(e.target.value)}
+    />
+    Credit / Debit Card
+  </label>
+
+  <label>
+    <input
+      type="radio"
+      name="payment"
+      value="Net Banking"
+      checked={paymentMethod === "Net Banking"}
+      onChange={(e) => setPaymentMethod(e.target.value)}
+    />
+    Net Banking
+  </label>
+
+</div>  
 
 
 
