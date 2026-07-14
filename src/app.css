@@ -12,6 +12,10 @@
     background: transparent;
     color: white;
 }
+.filters button a {
+    text-decoration: none;
+    color: white;
+}
 
 .filters button:hover {
     border: 2px solid white;

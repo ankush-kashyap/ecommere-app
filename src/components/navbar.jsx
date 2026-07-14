@@ -4,6 +4,8 @@ import SearchBar from "./SearchBar";
 import "./Navbar.css";
 import { FaHeart } from "react-icons/fa";
 
+
+
 function Navbar({ user,
     cartItems,
     wishlist,
@@ -46,6 +48,7 @@ function Navbar({ user,
                 <span>Cart</span>
             </div>
         </nav>
+        
     );
 }
 export default Navbar;

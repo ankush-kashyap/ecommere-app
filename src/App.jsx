@@ -18,7 +18,7 @@ import products from "/public/products.json";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Privacy from "./pages/Privacy";
-
+import { Link } from "react-router-dom";
 function App() {
 
   const [products, setProducts] = useState([]);
@@ -149,6 +149,39 @@ function App() {
             <>
               <Hero />
 
+
+              <div className="filters">
+                <button onClick={() => setSelectedCategory("All")}>
+                  All
+                </button>
+                <button >
+                  <Link to="/">Home</Link>
+                </button>
+                <button >
+                  <Link to="/about">About</Link>
+                </button>
+                <button >
+                  <Link to="/contact">Contact Us</Link>
+                </button>
+                
+
+                <button onClick={() => setSelectedCategory("electronics")}>
+                  Electronics
+                </button>
+
+                <button onClick={() => setSelectedCategory("women's clothing")}>
+                  Women's
+                </button>
+                <button onClick={() => setSelectedCategory("men")}>
+                  Men's
+                </button>
+                <button onClick={() => setSelectedCategory("jewelery")}>
+                  Jewelery
+                </button>
+                
+              </div>
+
+
               <div className="products">
                 {filteredProducts.map((product) => (
                   <ProductCard
@@ -205,7 +238,7 @@ function App() {
 
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
-        <Route  path="/privacy"  element={<Privacy />} />
+        <Route path="/privacy" element={<Privacy />} />
 
       </Routes>
 
