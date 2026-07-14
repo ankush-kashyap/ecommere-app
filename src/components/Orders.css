@@ -1,0 +1,184 @@
+.orders-page {
+  background: #eaeded;
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+.orders-container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.orders-title {
+  font-size: 2rem;
+  color: #232f3e;
+  margin-bottom: 30px;
+}
+
+.order-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+
+.order-header {
+  background: #f7f7f7;
+  padding: 18px 25px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.order-header div {
+  display: flex;
+  flex-direction: column;
+}
+
+.order-label {
+  color: #777;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+.order-value {
+  font-weight: 600;
+  color: #111;
+}
+
+.order-items {
+  padding: 20px;
+}
+
+.order-item {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.order-item:last-child {
+  border-bottom: none;
+}
+
+.order-item img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  background: #fff;
+}
+
+.order-info {
+  flex: 1;
+}
+
+.order-info h3 {
+  margin-bottom: 10px;
+  color: #007185;
+  font-size: 18px;
+}
+
+.order-info h3:hover {
+  color: #C7511F;
+}
+
+.order-info p {
+  color: #565959;
+  margin: 5px 0;
+}
+
+.order-price {
+  font-size: 20px;
+  color: #B12704;
+  font-weight: bold;
+}
+
+.order-status {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 6px 14px;
+  background: #d4edda;
+  color: #0f5132;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.order-buttons {
+  margin-top: 18px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.order-btn {
+  background: #FFD814;
+  border: 1px solid #FCD200;
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: .3s;
+  font-weight: 600;
+}
+
+.order-btn:hover {
+  background: #F7CA00;
+}
+
+.empty-orders {
+  background: white;
+  text-align: center;
+  padding: 80px 30px;
+  border-radius: 10px;
+}
+
+.empty-orders h2 {
+  margin-bottom: 15px;
+  color: #232f3e;
+}
+
+.empty-orders p {
+  color: #666;
+}
+
+.shop-btn {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 14px 30px;
+  background: #FFD814;
+  color: #111;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: 600;
+}
+
+.shop-btn:hover {
+  background: #F7CA00;
+}
+
+@media(max-width:768px){
+
+.order-header{
+    flex-direction:column;
+}
+
+.order-item{
+    flex-direction:column;
+    text-align:center;
+}
+
+.order-item img{
+    width:160px;
+    height:160px;
+}
+
+.order-buttons{
+    justify-content:center;
+}
+
+}

@@ -41,18 +41,17 @@
   gap: 5px;
   cursor: pointer;
 }
+
 .navbar-wishlist {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-
+  margin-right: 15px;
   width: 42px;
   height: 42px;
-
   text-decoration: none;
   color: #ffffff;
-
   transition: transform 0.25s ease;
 }
 
@@ -61,36 +60,57 @@
 }
 
 .wishlist-heart {
-  font-size: 26px;
+  font-size: 16px;
   transition: color 0.3s ease;
 }
 
 .navbar-wishlist:hover .wishlist-heart {
-  
+
   border: 2px solid white;
 }
 
 .wishlist-count {
   position: absolute;
-  top: -4px;
-  right: -6px;
-
-  min-width: 18px;
-  height: 18px;
-
+  top: 0px;
+  right: 3px;
+  min-width: 16px;
+  height: 16px;
   padding: 0 4px;
-
   border-radius: 50%;
-
   background: #f00404;
   color: #111;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   font-size: 11px;
   font-weight: 700;
 
   border: 2px solid #131921;
+}
+
+
+.orders {
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.orders-link {
+  font-size: 16px;
+  color: white;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.orders-link:hover {
+  border: 1px solid white;
+}
+
+
+
+@media (max-width: 768px) {
+  .orders {
+    display: none;
+    /* Hide on mobile like Amazon */
+  }
 }

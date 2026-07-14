@@ -1,9 +1,9 @@
 import "./checkout.css";
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 
 function Checkout({ cartItems,
-  removeItem, }) {
+  removeItem, clearCart , placeOrder}) {
 
   const [address, setAddress] = useState({
     name: "",
@@ -15,6 +15,12 @@ function Checkout({ cartItems,
     pincode: "",
   });
 
+  const navigate = useNavigate();
+
+  const handlePayment = () => {
+    placeOrder();
+    navigate("/order-success");
+  };
 
   const [addressType, setAddressType] = useState("Home");
   const [paymentMethod, setPaymentMethod] = useState("Cash on Delivery");
@@ -166,63 +172,56 @@ function Checkout({ cartItems,
             </label>
           </div>
 
-<div className="payment-method">
+          <div className="payment-method">
 
-  <h2>Payment Method</h2>
+            <h2>Payment Method</h2>
 
-  <label>
-    <input
-      type="radio"
-      name="payment"
-      value="Cash on Delivery"
-      checked={paymentMethod === "Cash on Delivery"}
-      onChange={(e) => setPaymentMethod(e.target.value)}
-    />
-    Cash on Delivery
-  </label>
+            <label>
+              <input
+                type="radio"
+                name="payment"
+                value="Cash on Delivery"
+                checked={paymentMethod === "Cash on Delivery"}
+                onChange={(e) => setPaymentMethod(e.target.value)}
+              />
+              Cash on Delivery
+            </label>
 
-  <label>
-    <input
-      type="radio"
-      name="payment"
-      value="UPI"
-      checked={paymentMethod === "UPI"}
-      onChange={(e) => setPaymentMethod(e.target.value)}
-    />
-    UPI
-  </label>
-
-  <label>
-    <input
-      type="radio"
-      name="payment"
-      value="Credit / Debit Card"
-      checked={paymentMethod === "Credit / Debit Card"}
-      onChange={(e) => setPaymentMethod(e.target.value)}
-    />
-    Credit / Debit Card
-  </label>
-
-  <label>
-    <input
-      type="radio"
-      name="payment"
-      value="Net Banking"
-      checked={paymentMethod === "Net Banking"}
-      onChange={(e) => setPaymentMethod(e.target.value)}
-    />
-    Net Banking
-  </label>
-
-</div>  
+            <label>
+              <input
+                type="radio"
+                name="payment"
+                value="UPI"
+                checked={paymentMethod === "UPI"}
+                onChange={(e) => setPaymentMethod(e.target.value)}
+              />
+              UPI
+            </label>
 
 
+            <label>
+              <input
+                type="radio"
+                name="payment"
+                value="Credit / Debit Card"
+                checked={paymentMethod === "Credit / Debit Card"}
+                onChange={(e) => setPaymentMethod(e.target.value)}
+              />
+              Credit / Debit Card
+            </label>
 
+            <label>
+              <input
+                type="radio"
+                name="payment"
+                value="Net Banking"
+                checked={paymentMethod === "Net Banking"}
+                onChange={(e) => setPaymentMethod(e.target.value)}
+              />
+              Net Banking
+            </label>
+          </div>
         </div>
-
-
-
-
       </div>
 
       <div className="checkout-right">
@@ -251,9 +250,10 @@ function Checkout({ cartItems,
           <span>${totalPrice.toFixed(2)}</span>
         </div>
 
-        <button className="payment-btn">
-          Proceed to Payment
+        <button className="payment-btn" onClick={handlePayment}>
+          Place Order
         </button>
+
 
       </div>
 

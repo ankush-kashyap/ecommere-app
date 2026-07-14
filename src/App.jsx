@@ -19,6 +19,8 @@ import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Privacy from "./pages/Privacy";
 import { Link } from "react-router-dom";
+import OrderSuccess from "./components/OrderSuccess";
+import Orders from "./components/Order";
 function App() {
 
   const [products, setProducts] = useState([]);
@@ -38,6 +40,38 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [user, setUser] = useState(null);
+
+  //your orders
+  const [orders, setOrders] = useState(() => {
+    const savedOrders = localStorage.getItem("orders");
+    return savedOrders ? JSON.parse(savedOrders) : [];
+  });
+
+const placeOrder = () => {
+  const newOrder = {
+    id: Date.now(),
+    date: new Date().toLocaleDateString(),
+    items: cartItems,
+    total: cartItems
+      .reduce((sum, item) => sum + item.price * item.quantity, 0)
+      .toFixed(2),
+    status: "Processing",
+  };
+
+  const updatedOrders = [newOrder, ...orders];
+
+  setOrders(updatedOrders);
+
+  localStorage.setItem(
+    "orders",
+    JSON.stringify(updatedOrders)
+  );
+
+  setCartItems([]); // Clear cart here
+};
+
+
+  //your orders ends
 
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
@@ -130,6 +164,10 @@ function App() {
     }
   };
 
+  const clearCart = () => {
+    setCartItems([]);
+  };
+
   return (
     <>
       <Navbar
@@ -155,15 +193,12 @@ function App() {
                   All
                 </button>
                 <button >
-                  <Link to="/">Home</Link>
-                </button>
-                <button >
                   <Link to="/about">About</Link>
                 </button>
                 <button >
                   <Link to="/contact">Contact Us</Link>
                 </button>
-                
+
 
                 <button onClick={() => setSelectedCategory("electronics")}>
                   Electronics
@@ -178,7 +213,7 @@ function App() {
                 <button onClick={() => setSelectedCategory("jewelery")}>
                   Jewelery
                 </button>
-                
+
               </div>
 
 
@@ -231,6 +266,8 @@ function App() {
             <Checkout
               cartItems={cartItems}
               removeItem={removeItem}
+              clearCart={clearCart}
+              placeOrder={placeOrder}
             />
           }
         />
@@ -239,6 +276,16 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
         <Route path="/privacy" element={<Privacy />} />
+        <Route
+          path="/order-success"
+          element={<OrderSuccess />}
+        />
+
+        <Route
+          path="/orders"
+          element={<Orders orders={orders} />}
+          products={products}
+        />
 
       </Routes>
 
@@ -253,6 +300,7 @@ function App() {
       )}
 
       <Footer />
+
 
     </>
   );

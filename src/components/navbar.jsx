@@ -43,12 +43,17 @@ function Navbar({ user,
                     )}
                 </Link>
             </div>
+            <div className="orders">
+                <Link to="/orders" className="orders-link">
+                    Orders
+                </Link>
+            </div>
             <div className="navbar-cart" onClick={() => setShowCart(true)}>
                 <FaShoppingCart />
                 <span>Cart</span>
             </div>
         </nav>
-        
+
     );
 }
 export default Navbar;
