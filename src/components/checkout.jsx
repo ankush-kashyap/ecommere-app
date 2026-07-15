@@ -3,7 +3,16 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Checkout({ cartItems,
-  removeItem, clearCart , placeOrder}) {
+  removeItem, clearCart, placeOrder }) {
+
+const [addressType, setAddressType] = useState("Home");
+  const [paymentMethod, setPaymentMethod] = useState("Cash on Delivery");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [pincode, setPincode] = useState("");
+
 
   const [address, setAddress] = useState({
     name: "",
@@ -17,14 +26,61 @@ function Checkout({ cartItems,
 
   const navigate = useNavigate();
 
+  const isFormValid =
+    name.trim() &&
+    phone.trim() &&
+    address.trim() &&
+    city.trim() &&
+    state.trim() &&
+    pincode.trim();
+
+
   const handlePayment = () => {
+    if (!name.trim()) {
+      alert("Please enter your name.");
+      return;
+    }
+
+    if (!phone.trim()) {
+      alert("Please enter your phone number.");
+      return;
+    }
+
+    if (phone.length !== 10) {
+      alert("Phone number must be 10 digits.");
+      return;
+    }
+
+    if (!address.trim()) {
+      alert("Please enter your address.");
+      return;
+    }
+
+    if (!city.trim()) {
+      alert("Please enter your city.");
+      return;
+    }
+
+    if (!state.trim()) {
+      alert("Please enter your state.");
+      return;
+    }
+
+    if (!pincode.trim()) {
+      alert("Please enter your PIN code.");
+      return;
+    }
+
+    if (pincode.length !== 6) {
+      alert("PIN code must be 6 digits.");
+      return;
+    }
+
     placeOrder();
     navigate("/order-success");
   };
 
-  const [addressType, setAddressType] = useState("Home");
-  const [paymentMethod, setPaymentMethod] = useState("Cash on Delivery");
-
+  
   const totalPrice = cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
     0
@@ -250,7 +306,11 @@ function Checkout({ cartItems,
           <span>${totalPrice.toFixed(2)}</span>
         </div>
 
-        <button className="payment-btn" onClick={handlePayment}>
+        <button
+          className="payment-btn"
+          onClick={handlePayment}
+          disabled={!isFormValid}
+        >
           Place Order
         </button>
 

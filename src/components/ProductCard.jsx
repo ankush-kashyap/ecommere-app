@@ -10,34 +10,34 @@ function ProductCard({ id,
     toggleWishlist,
     isWishlisted, }) {
     return (
-        <div className="product-card">
-            {/* Product Image */}
-            <Link to={`/product/${id}`}>
-                <img src={image} alt={title} className="product-image" />
-            </Link>
-            {/* Product Details */}
-            <div className="product-info">
+            <div className="product-card">
+                {/* Product Image */}
                 <Link to={`/product/${id}`}>
-                    <h3>{title}</h3>
-                    <div className="product-PR">
-                        <p className="product-price">${price}</p>
-                        <p className="product-rating">⭐ {rating.rate}</p>
-                    </div>
+                    <img src={image} alt={title} className="product-image" />
                 </Link>
+                {/* Product Details */}
+                <div className="product-info">
+                    <Link to={`/product/${id}`}>
+                        <h3>{title}</h3>
+                        <div className="product-PR">
+                            <p className="product-price">${price}</p>
+                            <p className="product-rating">⭐ {rating.rate}</p>
+                        </div>
+                    </Link>
 
-                <button
-                    className="wishlist-btn"
-                    onClick={toggleWishlist}
-                >
-                    {isWishlisted ? (
-                        <FaHeart color="red" />
-                    ) : (
-                        <FaRegHeart />
-                    )}
-                </button>
-                <Link to={`/product/${id}`}>see more</Link>
+                    <button
+                        className="wishlist-btn"
+                        onClick={toggleWishlist}
+                    >
+                        {isWishlisted ? (
+                            <FaHeart color="red" />
+                        ) : (
+                            <FaRegHeart />
+                        )}
+                    </button>
+                    <Link to={`/product/${id}`}>see more</Link>
+                </div>
             </div>
-        </div>
     );
 }
 export default ProductCard;

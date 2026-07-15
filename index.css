@@ -8,3 +8,8 @@
 body{
   background-color: #d5d9d9;
 }
+@media (max-width: 600px) {
+  .body{
+    margin-top: 80px;
+  }
+}
